@@ -23,7 +23,7 @@
 
 function udskrivProdukter () {
 	
-	// Henter et array med alle URL parametre.
+	// Henter et objekt med alle URL parametre.
 	// Definitionen af hentAlleUrlParametre funktionen ligger i "js/funktioner.js"
 	var alleUrlParametre = hentAlleUrlParametre ();
 	

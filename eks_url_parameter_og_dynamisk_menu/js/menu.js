@@ -19,14 +19,14 @@
 
 function udskrivMenu () {
 	
-	// Funktionen statisk_kategorier_data returnerer et JSON array indholdende kategorier.
+	// Funktionen statiskKategorierData returnerer et JSON array indholdende kategorier.
 	// Den bruges udelukkende til at holde eksemplet simpelt
 	// og uafhængigt af API'er, databaser, osv.
 	// Her kan du i stedet bruge en fetch().
-	var kategorier_data = statisk_kategorier_data ();
+	var kategorierData = statiskKategorierData ();
 
 	// Henter en reference til HTML elementet #menu-links
-	var menu_links = document.querySelector ("#menu-links");
+	var menuLinks = document.querySelector ("#menu-links");
 
 	// Denne variabel fylder vi løbende links i (<li> og <a>)
 	var html = "";
@@ -34,13 +34,13 @@ function udskrivMenu () {
 	// I dette eksempel bruges Attributten "data-id" til at highlighte det aktuelle menu-punkt.
 	// Dette sker ikke automatisk bare fordi man giver attributten til linket.
 	// Du kan se længere nede i koden, hvordan den bliver brugt.
-	kategorier_data.forEach (function (element) {
+	kategorierData.forEach (function (element) {
 		html += `<li><a data-id="${element.kategori_id}" href="produkter.html?kategoriID=${element.kategori_id}">${element.kategori_navn}</a></li>`;
 		// console.log (`ID: ${element.kategori_id},  Navn: ${element.kategori_navn}`);
 	});
 
 	// Kopierer indholdet af html variablen til innerHTML egenskaben, dom tilhører <ul id="menu-links">
-	menu_links.innerHTML = html;
+	menuLinks.innerHTML = html;
 
 
 	// --------------------------------------------------------
@@ -49,7 +49,7 @@ function udskrivMenu () {
 	// Følgende kode-blok highlighter det menu-punkt, som er aktuelt (hvis en kategori er valgt)
 
 
-	// Henter et array med alle URL parametre.
+	// Henter et objekt med alle URL parametre.
 	// Definitionen af hentAlleUrlParametre funktionen ligger i "js/funktioner.js"
 	var alleUrlParametre = hentAlleUrlParametre ();
 
@@ -63,11 +63,11 @@ function udskrivMenu () {
 		// ------------------------
 
 		// Henter en array med referencer til alle menu-punkterne
-		let alle_links = document.querySelectorAll ("#menu-links a");
+		let alleLinks = document.querySelectorAll ("#menu-links a");
 
 		// Sætter alle linksnes classes til ingenting,
 		// så vi er sikre på, at vi ikke ender med at have 2 highlightede links
-		alle_links.forEach (function (element) {
+		alleLinks.forEach (function (element) {
 			element.className = "";
 		});
 
@@ -78,12 +78,12 @@ function udskrivMenu () {
 		//console.log (`Selector: ${selector}`); // Test om selector'en er skrevet korrekt ved at logge den.
 		
 		// Henter en reference til det aktuelle menu-punkt (hvis en kategori er valgt)
-		let aktuelle_link = document.querySelector (selector);
+		let aktuelleLink = document.querySelector (selector);
 
 		// Tjekker om linket blev fundet
-		if (aktuelle_link !== null) {
+		if (aktuelleLink !== null) {
 			// Sætter linkets class til "active".
-			aktuelle_link.className = "active";
+			aktuelleLink.className = "active";
 		}
 	}
 }
