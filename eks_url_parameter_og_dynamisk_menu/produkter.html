@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/style_dark.css">
+	<title>URL parameter og dynamisk menu - Eksempel</title>
+</head>
+<body>
+	<h1>URL parameter og dynamisk menu - Eksempel</h1>
+
+	<main>
+		<h2>Kategorier</h2>
+
+		<nav>
+			<ul id="menu-links">
+				<!-- Menuen genereres dynamisk vha. javascript i "js/menu.js" -->
+			</ul>
+		</nav>
+
+		<section>
+			<article>
+
+				<p id="output">
+					<em>(Vælg en kategori. ID'et bliver udskrevet her.)</em>
+				</p>
+
+				<p><a href="produkter.html">Klik for at fjerne alle URL parametre</a></p>
+
+				<hr>
+				<h2>Om eksemplet</h2>
+				<p>Dette eksempel viser, hvordan man vha. Javascript kan hente et specifikt parameter fra URL'en, som f.eks. kategoriID, produktID, pris, osv.</p>
+				<p><strong>Menu-punkterne</strong> (href og teksten) genereres vha. et <strong>statisk JSON array</strong>. De bliver IKKE hentet fra en API.</p>
+				<p>Det <strong>aktuelle menu-punkt</strong> highlightes vha. en kombination af URL parametre og <a href="https://www.abeautifulsite.net/working-with-html5-data-attributes" target="_blank">data-attributter</a>.</p>
+				<p><strong>Hele siden genindlæses</strong>, når man trykker på et link, og der bruges <strong>spørgsmålstegn</strong> i URL'en til at sende parametre.</p>
+
+			</article>
+		</section>
+	</main>
+
+	<!-- Indlæser hjælpefunktioner -->
+	<script src="js/funktioner.js"></script>
+	
+	<!-- Indlæser filen, der indeholder statiske kategorier (kun til at teste eksemplet) -->
+	<script src="data/data_kategorier.js"></script>
+	
+	<!-- Indlæser filen, der genererer menuen dynamisk -->
+	<script src="js/menu.js"></script>
+
+	<!-- Indlæser filen, der skal manipulere indholdet af siden -->
+	<script src="js/produkter.js"></script>
+	
+</body>
+</html>
