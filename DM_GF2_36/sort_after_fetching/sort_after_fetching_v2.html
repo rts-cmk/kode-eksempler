@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Sort after fetching - Example</title>
+</head>
+
+<body>
+
+	<button id="fetchMultipleButton">Fetch multiple</button><br><br>
+
+	<div id="persons">(Persons will be fetched here. Click the button)</div>
+
+	<!-- <div class="person">
+		<div class="itemTitle">Luke Skywalker</div>
+	</div>
+
+	<div class="person">
+		<div class="itemTitle">Yoda</div>
+	</div>
+
+	<div class="person">
+		<div class="itemTitle">Darth</div>
+	</div> -->
+
+	<script>
+
+		function myFetchMultiple () {
+			let personsElement = document.querySelector ("#persons");
+			let html = "";
+			personsElement.innerHTML = "(fetching)";
+
+			let fetchCountCurrent = 0;
+			let fetchCountGoal = 5;
+
+			for (let i = 1; i <= fetchCountGoal; i++) {
+				fetch(`https://swapi.co/api/people/${i}/`)
+				.then(function(response){
+					return response.json();
+				})
+				.then(function(data){
+					html += `<div class="person">
+						<div class="itemTitle">${data.name}</div>
+					</div>`;
+					console.log (data.name);
+
+					fetchCountCurrent++;
+					if (fetchCountCurrent >= fetchCountGoal) {
+						console.log ("                Done fetching");
+						personsElement.innerHTML = html;
+						mySort();
+					}
+				});
+			}
+		}
+
+		// ================================================================
+
+		function mySort () {
+
+			console.log ("                Sorting");
+
+			let itemTitleElements = document.querySelectorAll(".itemTitle");
+
+			let names = [];
+
+			itemTitleElements.forEach (function (itemTitleElement) {
+				let name = itemTitleElement.innerText.replace(" ", "");
+				names.push(name);
+				itemTitleElement.parentElement.dataset.personName = name;
+			});
+
+			names.sort();
+
+			names.forEach (function (name) {
+				let personElementToMove = document.querySelector (`.person[data-person-name=${name}]`);
+				personElementToMove.parentElement.append (personElementToMove);
+			});
+		}
+
+		// ================================================================
+
+		document.querySelector ("#fetchMultipleButton").addEventListener ("click", function (event) {
+			myFetchMultiple();
+		});
+		
+	</script>
+
+</body>
+
+</html>
